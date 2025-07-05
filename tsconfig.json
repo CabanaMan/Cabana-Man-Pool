@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "jsx": "react",
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["react", "react-native"],
+    "baseUrl": "./"
+  },
+  "include": ["app/**/*.ts", "app/**/*.tsx", "App.tsx"],
+  "exclude": ["node_modules"]
+}
