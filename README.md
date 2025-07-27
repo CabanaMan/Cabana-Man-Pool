@@ -25,9 +25,9 @@ This mobile app helps pool technicians manage their daily route. It is built wit
    ```bash
    npm install --legacy-peer-deps
    ```
-2. Start Expo
+2. Start Expo (offline mode works without network access)
    ```bash
-   npm start
+   npm run start-offline
    ```
 3. Open the app on a device with the Expo Go app or an emulator.
 
