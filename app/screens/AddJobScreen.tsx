@@ -13,6 +13,7 @@ export default function AddJobScreen() {
   const [customer, setCustomer] = useState('');
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
+  const [poolSize, setPoolSize] = useState('15000');
 
   useEffect(() => {
     if (route.params.jobId) {
@@ -36,7 +37,7 @@ export default function AddJobScreen() {
       customer,
       address,
       notes,
-      poolSize: 15000,
+      poolSize: parseInt(poolSize) || 0,
       services: '',
       lastService: new Date().toISOString(),
       completed: false,
@@ -51,6 +52,13 @@ export default function AddJobScreen() {
     <View style={styles.container}>
       <TextInput placeholder="Customer" value={customer} onChangeText={setCustomer} style={styles.input} />
       <TextInput placeholder="Address" value={address} onChangeText={setAddress} style={styles.input} />
+      <TextInput
+        placeholder="Pool Size (gallons)"
+        value={poolSize}
+        onChangeText={setPoolSize}
+        keyboardType="numeric"
+        style={styles.input}
+      />
       <TextInput placeholder="Notes" value={notes} onChangeText={setNotes} style={styles.input} />
       <Button title="Save" onPress={save} />
     </View>

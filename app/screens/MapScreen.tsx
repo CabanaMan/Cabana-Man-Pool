@@ -58,9 +58,23 @@ export default function MapScreen() {
     setJobs(optimizeRoute(coords));
   };
 
+  const initialRegion = jobs.length
+    ? {
+        latitude: jobs[0].latitude,
+        longitude: jobs[0].longitude,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+      }
+    : {
+        latitude: 37.78,
+        longitude: -122.43,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+      };
+
   return (
     <View style={{ flex: 1 }}>
-      <MapView style={styles.map}>
+      <MapView style={styles.map} initialRegion={initialRegion}>
         {jobs.map(j => (
           <Marker key={j.id} coordinate={{ latitude: j.latitude, longitude: j.longitude }} title={j.customer} />
         ))}

@@ -37,6 +37,8 @@ export default function HomeScreen() {
       />
       <Button title="Job List" onPress={() => navigation.navigate('Jobs')} />
       <Button title="View Route Map" onPress={() => navigation.navigate('Map')} />
+      <Button title="Calculator" onPress={() => navigation.navigate('Calculator')} />
+      <Button title="Settings" onPress={() => navigation.navigate('Settings')} />
     </View>
   );
 }
