@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList, Job } from '../types';
+import JobItem from '../components/JobItem';
+import { loadJobs } from '../database/jobs';
 
-const jobs: Job[] = [
+const defaultJobs: Job[] = [
   { id: '1', customer: 'Smith Family', address: '123 Palm Rd' },
   { id: '2', customer: 'Jones Estate', address: '456 Ocean Ave' },
   { id: '3', customer: 'Liu Residence', address: '789 Sunset Blvd' },
@@ -12,6 +14,17 @@ const jobs: Job[] = [
 
 export default function HomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [jobs, setJobs] = useState<Job[]>([]);
+
+  useEffect(() => {
+    loadJobs().then((stored) => {
+      if (stored.length === 0) {
+        setJobs(defaultJobs);
+      } else {
+        setJobs(stored);
+      }
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -20,13 +33,17 @@ export default function HomeScreen() {
         data={jobs}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.jobItem}>
-            <Text style={styles.jobText}>{item.customer}</Text>
-            <Text style={styles.jobAddress}>{item.address}</Text>
-          </View>
+          <JobItem
+            job={item}
+            onPress={() => navigation.navigate('JobDetail', { job: item })}
+          />
         )}
       />
-      <Button title="View Route Map" onPress={() => navigation.navigate('Map')} />
+      <Button title="View Route Map" onPress={() => navigation.navigate('Map', { jobs })} />
+      <Button
+        title="Chemical Calculator"
+        onPress={() => navigation.navigate('ChemCalc')}
+      />
     </View>
   );
 }
@@ -41,17 +58,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 12,
-  },
-  jobItem: {
-    paddingVertical: 8,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#ccc',
-  },
-  jobText: {
-    fontSize: 16,
-  },
-  jobAddress: {
-    fontSize: 14,
-    color: '#555',
   },
 });
