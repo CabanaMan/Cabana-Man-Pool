@@ -1,1 +1,1 @@
-// Screens will be added step by step
+All screen components for the app live in this directory.
