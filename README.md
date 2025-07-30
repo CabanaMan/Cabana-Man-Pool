@@ -2,17 +2,20 @@
 
 This repository contains the **Cabana Man Pool Service** mobile application. The project uses **React Native with Expo** and TypeScript.
 
-The implementation is progressing screen by screen. The first step adds a Home screen with a simple list of today's jobs and a button to view the route map.
+The application provides a home screen listing today's jobs with options to view each job, see a route map with stops, and run a basic chemical calculator.
 
 ## Folder Structure
 
 - `App.tsx` - Application entry point with React Navigation.
 - `app/`
-  - `components/` - Reusable UI components (to be implemented).
+  - `components/` - Reusable UI components.
+    - `JobItem.tsx` - List item for a job.
   - `screens/` - App screens.
     - `HomeScreen.tsx` - Shows today's jobs and total stops.
-    - `MapScreen.tsx` - Placeholder for route map.
-  - `database/` - Local storage helpers (to be implemented).
+    - `MapScreen.tsx` - Displays the route map for today's jobs.
+    - `JobDetailScreen.tsx` - Displays details about a job.
+    - `ChemicalCalculatorScreen.tsx` - Simple pool chemical calculator.
+  - `database/` - Local storage helpers.
   - `types/` - Shared TypeScript types.
 
 ## Getting Started
@@ -27,4 +30,4 @@ The implementation is progressing screen by screen. The first step adds a Home s
    ```
 3. Use the Expo Go app or an emulator to run the project.
 
-Next steps will add the Job List, Job Detail, Route Map functionality, chemical calculator, and local storage.
+This example includes a simple job list with detail screens, a route map and chemical calculator. Job data is stored locally using AsyncStorage.
